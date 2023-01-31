@@ -1,5 +1,6 @@
 import './App.css';
 import { useState, useEffect } from 'react';
+import { getRepositoriesByUser } from './service';
 
 // https://api.github.com/users/tiagolopesdev
 // https://api.github.com/users/tiagolopesdev/repos
@@ -19,10 +20,16 @@ export const App = () => {
   const [repositories, setRepositories] = useState<RepositoryProps[]>([]);
 
   useEffect(() => {
-    fetch('https://api.github.com/users/tiagolopesdev/repos')
+    //fetch('https://api.github.com/users/tiagolopesdev/repos')
+
+    fetch(getAllRepositories())
     .then(response => response.json())
     .then(data => setRepositories(data))
   }, [repositories])
+
+  async function getAllRepositories() {
+    return await getRepositoriesByUser('tiagolopesdev');
+  }
 
   return (
     <div className="App">
