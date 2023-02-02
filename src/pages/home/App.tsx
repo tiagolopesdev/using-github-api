@@ -1,5 +1,6 @@
 import './App.css';
 import { useState } from 'react';
+import { getRepositoriesByUser } from '../../service';
 
 // https://api.github.com/users/tiagolopesdev
 // https://api.github.com/users/tiagolopesdev/repos
@@ -13,8 +14,6 @@ interface RepositoryProps {
   topics: []
 }
 
-const baseUrl = 'https://api.github.com/users/';
-
 export const App = () => {
 
   const [repositories, setRepositories] = useState<RepositoryProps[]>([]);
@@ -22,12 +21,7 @@ export const App = () => {
 
   const getAllRepositories = async (nickName: string) => {
     if (nickName !== '') {
-      return fetch(`${baseUrl}${nickname}/repos`)
-        .then(response => response.json())
-        .then(data => {
-          setRepositories(data)
-          console.log('Repository: ', data);
-        });
+      return setRepositories(await getRepositoriesByUser(nickName));
     } else if (nickName === '' && repositories !== undefined) {
       setRepositories([]);
     }
