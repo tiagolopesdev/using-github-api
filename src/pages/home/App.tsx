@@ -1,6 +1,7 @@
 import './App.css';
 import { useState } from 'react';
 import { getRepositoriesByUser } from '../../service';
+import { NavBar } from '../../components/navbar';
 
 // https://api.github.com/users/tiagolopesdev
 // https://api.github.com/users/tiagolopesdev/repos
@@ -29,6 +30,7 @@ export const App = () => {
 
   return (
     <div className="App">
+      <NavBar/>
       <div>
         <input
           type='text'
