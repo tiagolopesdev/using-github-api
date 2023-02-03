@@ -1,6 +1,6 @@
 import './App.css';
 import { useState } from 'react';
-import { getRepositoriesByUser } from '../../service';
+import { getProfileUser, getRepositoriesByUser } from '../../service';
 import { NavBar } from '../../components/navbar';
 
 // https://api.github.com/users/tiagolopesdev
@@ -14,15 +14,37 @@ interface RepositoryProps {
   svn_url: string,
   topics: []
 }
+interface ProfileUserProps {
+  id: string,
+  name: string,
+  public_repos: number,
+  avatar_url: string
+}
 
 export const App = () => {
 
   const [repositories, setRepositories] = useState<RepositoryProps[]>([]);
+  const [profileUser, setProfileUser] = useState<ProfileUserProps | null>(null);
   const [nickname, setNickName] = useState('');
 
   const getAllRepositories = async (nickName: string) => {
     if (nickName !== '') {
-      return setRepositories(await getRepositoriesByUser(nickName));
+
+      let resProfile = await getProfileUser(nickName);
+
+      const profileUser: ProfileUserProps = { 
+        id: resProfile.id,
+        name: resProfile.name,
+        public_repos: resProfile.public_repos,
+        avatar_url: resProfile.avatar_url
+      } 
+
+      setProfileUser(profileUser);
+
+      setRepositories(await getRepositoriesByUser(nickName));
+    
+      return repositories;
+
     } else if (nickName === '' && repositories !== undefined) {
       setRepositories([]);
     }
@@ -30,7 +52,7 @@ export const App = () => {
 
   return (
     <div className="App">
-      <NavBar/>
+      {/* <NavBar/> */}
       <div>
         <input
           type='text'
@@ -39,6 +61,9 @@ export const App = () => {
         />
         <button onClick={() => getAllRepositories(nickname)}>SEARCH</button>
       </div>
+
+      <img src={profileUser?.avatar_url} />
+      
       <header >
         {repositories.map(repository => {
           return <>
@@ -118,3 +143,4 @@ export const App = () => {
     </div>
   );
 }
+
