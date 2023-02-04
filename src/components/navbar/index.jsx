@@ -20,11 +20,8 @@ export const NavBar = ({children, props}) => {
 
             <p style={{
                 'position': 'absolute',
-                'width': '350px',
-                'height': '49px',
-                'left': '900px',
+                'width': '160%',
                 'marginTop': '40px',
-                'fontFamily': 'Montserrat',
                 'fontSize': '25px',
                 'color': '#FFFFFF',
             }}>
