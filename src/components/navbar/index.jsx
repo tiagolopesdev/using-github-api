@@ -14,7 +14,11 @@ export const NavBar = ({children, props}) => {
             'boxShadow': '0px 4px 12px 1px rgba(0, 0, 0, 0.5)',
         }}>
 
-            <img src={props?.avatar_url} className='imgStyle'/>
+            <img 
+                src={props?.avatar_url} 
+                className='imgStyle'
+                alt='img profile'
+            />
 
             {children}
 
