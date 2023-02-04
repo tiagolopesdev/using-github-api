@@ -1,12 +1,11 @@
 import './style.css';
 
-export const NavBar = ({props}) => {
-
-    //console.log('Img ', props.avatar_url);
+export const NavBar = ({children, props}) => {
 
     return (
         <div style={{
-            // position: 'fixed',
+            'position': 'fixed',
+            'display': 'grid',
             width: '100%',
             height: '115px',
             left: '0px',
@@ -15,7 +14,9 @@ export const NavBar = ({props}) => {
             'boxShadow': '0px 4px 12px 1px rgba(0, 0, 0, 0.5)',
         }}>
 
-        <img src={props?.avatar_url} className='imgStyle'/>
+            <img src={props?.avatar_url} className='imgStyle'/>
+
+            {children}
 
             <p style={{
                 'position': 'absolute',
@@ -27,7 +28,7 @@ export const NavBar = ({props}) => {
                 'fontSize': '25px',
                 'color': '#FFFFFF',
             }}>
-                Repositórios: 000
+                Repositórios: {props?.public_repos}
             </p>
         </div >
     );

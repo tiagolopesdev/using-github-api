@@ -32,17 +32,17 @@ export const App = () => {
 
       let resProfile = await getProfileUser(nickName);
 
-      const profileUser: ProfileUserProps = { 
+      const profileUser: ProfileUserProps = {
         id: resProfile.id,
         name: resProfile.name,
         public_repos: resProfile.public_repos,
         avatar_url: resProfile.avatar_url
-      } 
+      }
 
       setProfileUser(profileUser);
 
       setRepositories(await getRepositoriesByUser(nickName));
-    
+
       return repositories;
 
     } else if (nickName === '' && repositories !== undefined) {
@@ -52,19 +52,44 @@ export const App = () => {
 
   return (
     <div className="App">
-      {/* <NavBar/> */}
-      <div>
-        <input
-          type='text'
-          placeholder='Digite o nume do usuário'
-          onChange={(e) => setNickName(e.target.value)}
-        />
-        <button onClick={() => getAllRepositories(nickname)}>SEARCH</button>
+      <div>        
+        <NavBar props={profileUser} >
+          <div style={{
+              'position': 'fixed',
+              'marginTop': '3%',
+              'marginLeft': '40%'
+          }}>
+            <input
+              type='text'
+              placeholder='Digite o nume do usuário'
+              onChange={(e) => setNickName(e.target.value)}
+              style={{
+                'border': 'none',
+                'padding': '0.8rem',
+                'marginRight': '10px',
+                'borderRadius': '30px',
+                'outlineStyle': 'none'
+              }}
+            />
+            <button 
+              onClick={() => getAllRepositories(nickname)}
+              style={{
+                'border': 'none',
+                'padding': '0.8rem',
+                'marginRight': '10px',
+                'borderRadius': '30px',
+                'outlineStyle': 'none'
+              }}
+            >SEARCH</button>
+          </div>
+        </NavBar>      
       </div>
-
-      <img src={profileUser?.avatar_url} />
       
-      <header >
+      <div 
+        style={{
+          'marginTop': '10%'
+        }}
+      >
         {repositories.map(repository => {
           return <>
             <div
@@ -139,7 +164,7 @@ export const App = () => {
             </div>
           </>
         })}
-      </header>
+      </div>
     </div>
   );
 }
