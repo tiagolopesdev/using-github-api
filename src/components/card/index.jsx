@@ -1,3 +1,5 @@
+import { Button } from "../buttton";
+import { Tag } from "../tag";
 
 
 export const Card = () => {
@@ -14,7 +16,7 @@ export const Card = () => {
             <div style={{ 'display': 'flex' }}>
                 <div>
                     <div style={{
-                        'text-align': 'start',
+                        'textAlign': 'start',
                         'width': '75%'
                     }}>
                         <h1 style={{
@@ -28,12 +30,12 @@ export const Card = () => {
                             }}>Lorem ipsum leo risus, porta ac consectetur ac, vestibulum at eros. Donec id elit non mi porta gravida at eget metus. Cum sociis natoque penatibus et magnis dis parturient montes.</p>
                     </div>
                     <p style={{
-                        'text-align': 'start',
+                        'textAlign': 'start',
                         'marginTop': '15px'
                     }}>Linguagem</p>
                     <div style={{
                         'display': 'flex',
-                        'margin-top': '5%'
+                        'marginTop': '5%'
                     }}>
                         <p style={{
                             'marginRight': '2%'
@@ -56,7 +58,10 @@ export const Card = () => {
                             'fontSize': 'xx-large'
                         }}>000</h3>
                     </div>
-                    <button style={{
+                    <Button 
+                        diplaytext={'Ver repositórios'}
+                    />
+                    {/* <button style={{
                         'width': '10rem',
                         'padding': '0.4rem',
                         'border': 'none',
@@ -65,36 +70,17 @@ export const Card = () => {
                         'color': '#4C86BB',
                         'fontSize': '12pt',
                         'fontWeight': 'bold'
-                    }}>Ver repositorios</button>
+                    }}>Ver repositorios</button> */}
                 </div>                
             </div>
             <div style={{
                 'marginTop': '3%'
             }}>
-                <span style={{    
-                    'padding': '0.3rem',
-                    'backgroundColor': '#4C86BB',
-                    'borderRadius': '10px',
-                    'margin': '1%'
-                }}>tags</span>
-                <span style={{    
-                    'padding': '0.3rem',
-                    'backgroundColor': '#4C86BB',
-                    'borderRadius': '10px',
-                    'margin': '1%'
-                }}>tags</span>
-                <span style={{    
-                    'padding': '0.3rem',
-                    'backgroundColor': '#4C86BB',
-                    'borderRadius': '10px',
-                    'margin': '1%'
-                }}>tags</span>
-                <span style={{    
-                    'padding': '0.3rem',
-                    'backgroundColor': '#4C86BB',
-                    'borderRadius': '10px',
-                    'margin': '1%'
-                }}>javascript</span>
+                <Tag name={'Tag by component'} />
+                <Tag name={'Tag by component'} />
+                <Tag name={'Tag by component'} />
+                <Tag name={'Tag by component'} />
+                
             </div>
         </div >
     );

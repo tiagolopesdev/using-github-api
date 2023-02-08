@@ -1,5 +1,5 @@
 
-export const Button = (props) => {
+export const Button = ({...props}) => {
     return (
         <button {...props} style={{
             'width': '10rem',
@@ -10,6 +10,6 @@ export const Button = (props) => {
             'color': '#4C86BB',
             'fontSize': '12pt',
             'fontWeight': 'bold'
-        }}>{props.diplayText}</button>
+        }}>{props.diplaytext}</button>
     );
 }
