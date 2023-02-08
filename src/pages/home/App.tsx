@@ -2,6 +2,8 @@ import './App.css';
 import { useState } from 'react';
 import { getProfileUser, getRepositoriesByUser } from '../../service';
 import { NavBar } from '../../components/navbar';
+import { Card } from '../../components/card';
+import { Button } from '../../components/buttton';
 
 // https://api.github.com/users/tiagolopesdev
 // https://api.github.com/users/tiagolopesdev/repos
@@ -30,22 +32,30 @@ export const App = () => {
   const getAllRepositories = async (nickName: string) => {
     if (nickName !== '') {
 
+      console.log('Click');
+
       let resProfile = await getProfileUser(nickName);
 
-      const profileUser: ProfileUserProps = {
+      const profileUserProp: ProfileUserProps = {
         id: resProfile.id,
         name: resProfile.name,
         public_repos: resProfile.public_repos,
         avatar_url: resProfile.avatar_url
       }
 
-      setProfileUser(profileUser);
+      console.log('Data profile prop, ', profileUserProp);
+      
+      setProfileUser(profileUserProp);
+
+      await console.log('Data profile, ', profileUser);
 
       setRepositories(await getRepositoriesByUser(nickName));
 
+      await console.log(repositories);
+
       return repositories;
 
-    } else if (nickName === '' && repositories !== undefined) {
+    } else if (nickName === '' && !repositories) {
       setRepositories([]);
     }
   }
@@ -54,11 +64,7 @@ export const App = () => {
     <div className="App">
       <div>        
         <NavBar props={profileUser} >
-          <div style={{
-              'position': 'fixed',
-              'marginTop': '3%',
-              'marginLeft': '40%'
-          }}>
+          <div>
             <input
               type='text'
               placeholder='Digite o nume do usuário'
@@ -71,37 +77,46 @@ export const App = () => {
                 'outlineStyle': 'none'
               }}
             />
-            <button 
+            <Button 
+              diplaytext={'Search'}
               onClick={() => getAllRepositories(nickname)}
-              style={{
-                'border': 'none',
-                'padding': '0.8rem',
-                'marginRight': '10px',
-                'borderRadius': '30px',
-                'outlineStyle': 'none'
-              }}
-            >SEARCH</button>
+            />
+            {/* <button
+              //onClick={() => console.log('Click in button')}
+              onClick={() => getAllRepositories(nickname)}
+            // style={{
+            //   'border': 'none',
+            //   'padding': '0.8rem',
+            //   'marginRight': '10px',
+            //   'borderRadius': '30px',
+            //   'outlineStyle': 'none'
+            // }}
+            >SEARCH</button> */}
           </div>
-        </NavBar>      
+        </NavBar>
       </div>
-      
-      <div 
+
+      <Card />
+
+      {/* <div
         style={{
-          'marginTop': '10%'
+          'marginTop': '10%',
+          'display': 'flex',
+          'justifyContent': 'center'
         }}
       >
         {repositories.map(repository => {
           return <>
             <div
-              // style={{
-              //   height: 'auto',
-              //   padding: '10px',
-              //   'border-radius': '20px',
-              //   'background-color': '#3f6dd5',
-              //   margin: '20px',
-              //   color: 'white',
-              //   'box-shadow': 'rgba(0, 0, 0, 0.35) 0px 5px 15px'
-              // }}
+              style={{
+                height: 'auto',
+                padding: '10px',
+                'borderRadius': '20px',
+                'backgroundColor': '#3f6dd5',
+                margin: '20px',
+                color: 'white',
+                'boxShadow': 'rgba(0, 0, 0, 0.35) 0px 5px 15px'
+              }}
               key={repository.id}
             >
               <h2
@@ -164,8 +179,8 @@ export const App = () => {
             </div>
           </>
         })}
-      </div>
-    </div>
+      </div> */}
+    </div >
   );
 }
 
