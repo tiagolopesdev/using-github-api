@@ -1,9 +1,9 @@
 import './App.css';
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import { getProfileUser, getRepositoriesByUser } from '../../service';
 import { NavBar } from '../../components/navbar';
-import { Card } from '../../components/card';
 import { Button } from '../../components/buttton';
+import { UserProfileContext } from '../../context/user';
 
 // https://api.github.com/users/tiagolopesdev
 // https://api.github.com/users/tiagolopesdev/repos
@@ -23,16 +23,17 @@ interface ProfileUserProps {
   avatar_url: string
 }
 
-export const App = () => {
+export const DisplayAllRepositories = () => {
 
   const [repositories, setRepositories] = useState<RepositoryProps[]>([]);
   const [profileUser, setProfileUser] = useState<ProfileUserProps | null>(null);
   const [nickname, setNickName] = useState('');
+  const { assigUserProfile } = useContext(UserProfileContext);
 
   const getAllRepositories = async (nickName: string) => {
     if (nickName !== '') {
 
-      console.log('Click');
+      //console.log('Click');
 
       let resProfile = await getProfileUser(nickName);
 
@@ -43,11 +44,13 @@ export const App = () => {
         avatar_url: resProfile.avatar_url
       }
 
-      console.log('Data profile prop, ', profileUserProp);
+      //console.log('Data profile prop, ', profileUserProp);
+
+      await assigUserProfile(profileUserProp)
       
       setProfileUser(profileUserProp);
 
-      await console.log('Data profile, ', profileUser);
+      //await console.log('Data profile, ', profileUser);
 
       setRepositories(await getRepositoriesByUser(nickName));
 
@@ -58,6 +61,12 @@ export const App = () => {
     } else if (nickName === '' && !repositories) {
       setRepositories([]);
     }
+  }
+
+  const onSubmit = async (nickname: string) => {
+    console.log('In submit');
+    await assigUserProfile(nickname)
+    await getAllRepositories(nickname);
   }
 
   return (
@@ -79,7 +88,7 @@ export const App = () => {
             />
             <Button 
               diplaytext={'Search'}
-              onClick={() => getAllRepositories(nickname)}
+              onClick={() => onSubmit(nickname)}
             />
             {/* <button
               //onClick={() => console.log('Click in button')}
@@ -96,12 +105,12 @@ export const App = () => {
         </NavBar>
       </div>
 
-      <Card />
+      {/* <Card /> */}
 
-      {/* <div
+      <div
         style={{
           'marginTop': '10%',
-          'display': 'flex',
+          'display': 'grid',
           'justifyContent': 'center'
         }}
       >
@@ -179,8 +188,7 @@ export const App = () => {
             </div>
           </>
         })}
-      </div> */}
+      </div>
     </div >
   );
 }
-
