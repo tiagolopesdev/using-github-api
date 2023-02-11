@@ -5,10 +5,10 @@ import { Profile } from '../src/pages/profile/';
 export const App = () => {
   return (
     <BrowserRouter>
-        <Routes>
-            <Route path='/' element={<DisplayAllRepositories />} />
-            <Route path='/profile' element={<Profile />} />
-        </Routes>
+      <Routes>
+        <Route path='/' element={<DisplayAllRepositories />} />
+        <Route path='/profile' element={<Profile />} />
+      </Routes>
     </BrowserRouter>
   );
 }

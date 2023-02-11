@@ -1,5 +1,5 @@
 import './App.css';
-import { useContext, useState } from 'react';
+import { useContext, useState, useEffect } from 'react';
 import { getProfileUser, getRepositoriesByUser } from '../../service';
 import { NavBar } from '../../components/navbar';
 import { Button } from '../../components/buttton';
@@ -20,7 +20,8 @@ interface ProfileUserProps {
   id: string,
   name: string,
   public_repos: number,
-  avatar_url: string
+  avatar_url: string,
+  login: string
 }
 
 export const DisplayAllRepositories = () => {
@@ -28,45 +29,43 @@ export const DisplayAllRepositories = () => {
   const [repositories, setRepositories] = useState<RepositoryProps[]>([]);
   const [profileUser, setProfileUser] = useState<ProfileUserProps | null>(null);
   const [nickname, setNickName] = useState('');
-  const { assigUserProfile } = useContext(UserProfileContext);
+  const { assigUserProfile, user, isStorage, getStorageProfileUser, getProfileUserStored } = useContext(UserProfileContext);
+
+  useEffect(() => {    
+    
+    getStorageProfileUser()    
+
+    if (isStorage) {
+      getProfileUserStored()
+      getAllRepositories(user.login)
+    }
+  
+  }, [isStorage, nickname])
 
   const getAllRepositories = async (nickName: string) => {
     if (nickName !== '') {
 
-      //console.log('Click');
+      var resProfile = await getProfileUser(nickName);
 
-      let resProfile = await getProfileUser(nickName);
-
-      const profileUserProp: ProfileUserProps = {
+      const profileUserProp: ProfileUserProps = await {
         id: resProfile.id,
         name: resProfile.name,
         public_repos: resProfile.public_repos,
-        avatar_url: resProfile.avatar_url
+        avatar_url: resProfile.avatar_url,
+        login: resProfile.login
       }
-
-      //console.log('Data profile prop, ', profileUserProp);
 
       await assigUserProfile(profileUserProp)
       
       setProfileUser(profileUserProp);
 
-      //await console.log('Data profile, ', profileUser);
-
       setRepositories(await getRepositoriesByUser(nickName));
-
-      await console.log(repositories);
 
       return repositories;
 
     } else if (nickName === '' && !repositories) {
       setRepositories([]);
     }
-  }
-
-  const onSubmit = async (nickname: string) => {
-    console.log('In submit');
-    await assigUserProfile(nickname)
-    await getAllRepositories(nickname);
   }
 
   return (
@@ -88,7 +87,7 @@ export const DisplayAllRepositories = () => {
             />
             <Button 
               diplaytext={'Search'}
-              onClick={() => onSubmit(nickname)}
+              onClick={() => getAllRepositories(nickname)}
             />
             {/* <button
               //onClick={() => console.log('Click in button')}

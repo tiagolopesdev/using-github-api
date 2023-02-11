@@ -1,19 +1,30 @@
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import { UserProfileContext } from "../../context/user";
 
 export const Profile = () => {
 
-    const { assigUserProfile, user } = useContext(UserProfileContext);
+    const { user, isStorage, getStorageProfileUser, getProfileUserStored } = useContext(UserProfileContext);
 
-    console.log('User in profile ', user);
+    console.log('user in profile', user);
 
-    if(!user) {
-        return (
+    useEffect(() => {    
+    
+        getStorageProfileUser()    
+    
+        if (isStorage) {
+          getProfileUserStored()
+        }
+      
+    }, [isStorage])
+
+    return(
+        <>
+            <h1>Acesso aos dados do perfil</h1>
             <div>
                 <h1>{user?.name}</h1>
                 <h1>{user?.public_repos}</h1>
                 <h1>{user?.avatar_url}</h1>
             </div>
-        );
-    }
+        </>
+    );
 }

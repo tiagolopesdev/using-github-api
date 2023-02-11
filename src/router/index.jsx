@@ -10,7 +10,5 @@ export function Routers() {
             <Router path='/' element={<DisplayAllRepositories />} />
             <Router path='/profile' element={<Profile />} />
         </Routes>
-        // <BrowserRouter>
-        // </BrowserRouter>
     );
 }
