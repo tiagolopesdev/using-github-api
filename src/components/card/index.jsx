@@ -8,6 +8,8 @@ export const Card = ({props}) => {
         console.log('in function');
         window.location.href = `${props.svn_url}`;
     }
+
+    console.log(props);
  
     return (
         <Body>
@@ -30,7 +32,7 @@ export const Card = ({props}) => {
                     <p style={{
                         'textAlign': 'start',
                         'marginTop': '15px'
-                    }}>Linguagem</p>
+                    }}>{props.language}</p>
                     <div style={{
                         'display': 'flex',
                         'marginTop': '5%'
