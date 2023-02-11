@@ -56,16 +56,6 @@ export const Card = ({props}) => {
                     <Button 
                         diplaytext={'Ver repositórios'}
                     />
-                    {/* <button style={{
-                        'width': '10rem',
-                        'padding': '0.4rem',
-                        'border': 'none',
-                        'borderRadius': '30px',
-                        'backgroundColor': '#FFFFFF',
-                        'color': '#4C86BB',
-                        'fontSize': '12pt',
-                        'fontWeight': 'bold'
-                    }}>Ver repositorios</button> */}
                 </div>                
             </div>
             <div style={{'marginTop': '3%'}}>
