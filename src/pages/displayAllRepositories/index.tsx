@@ -4,6 +4,7 @@ import { getProfileUser, getRepositoriesByUser } from '../../service';
 import { NavBar } from '../../components/navbar';
 import { Button } from '../../components/buttton';
 import { UserProfileContext } from '../../context/user';
+import { Card } from '../../components/card';
 
 // https://api.github.com/users/tiagolopesdev
 // https://api.github.com/users/tiagolopesdev/repos
@@ -31,15 +32,15 @@ export const DisplayAllRepositories = () => {
   const [nickname, setNickName] = useState('');
   const { assigUserProfile, user, isStorage, getStorageProfileUser, getProfileUserStored } = useContext(UserProfileContext);
 
-  useEffect(() => {    
-    
-    getStorageProfileUser()    
+  useEffect(() => {
+
+    getStorageProfileUser()
 
     if (isStorage) {
       getProfileUserStored()
       getAllRepositories(user.login)
     }
-  
+
   }, [isStorage, nickname])
 
   const getAllRepositories = async (nickName: string) => {
@@ -56,7 +57,7 @@ export const DisplayAllRepositories = () => {
       }
 
       await assigUserProfile(profileUserProp)
-      
+
       setProfileUser(profileUserProp);
 
       setRepositories(await getRepositoriesByUser(nickName));
@@ -70,7 +71,7 @@ export const DisplayAllRepositories = () => {
 
   return (
     <div className="App">
-      <div>        
+      <div>
         <NavBar props={profileUser} >
           <div>
             <input
@@ -85,7 +86,7 @@ export const DisplayAllRepositories = () => {
                 'outlineStyle': 'none'
               }}
             />
-            <Button 
+            <Button
               diplaytext={'Search'}
               onClick={() => getAllRepositories(nickname)}
             />
@@ -104,9 +105,22 @@ export const DisplayAllRepositories = () => {
         </NavBar>
       </div>
 
-      {/* <Card /> */}
+      <div style={{
+        marginTop: '10%',
+        display: 'grid',
+        justifyContent: 'center'
+      }}>
+        {repositories.map(repository => {
+          return (
+            <Card
+              props={repository}
+            />
+          )
+        })}
+      </div>
 
-      <div
+
+      {/* <div
         style={{
           'marginTop': '10%',
           'display': 'grid',
@@ -187,7 +201,7 @@ export const DisplayAllRepositories = () => {
             </div>
           </>
         })}
-      </div>
+      </div> */}
     </div >
   );
 }
