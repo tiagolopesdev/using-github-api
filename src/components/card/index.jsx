@@ -9,7 +9,7 @@ export const Card = ({props}) => {
     return (
         <Body>
             <div style={{ 'display': 'flex' }}>
-                 <div>
+                 <div style={{width: '80%'}}>
                      <div style={{
                         'textAlign': 'start',
                         'width': '75%'
