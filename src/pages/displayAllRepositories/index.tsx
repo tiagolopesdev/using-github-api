@@ -1,9 +1,9 @@
 import './App.css';
-import { useState } from 'react';
+import { useContext, useState, useEffect } from 'react';
 import { getProfileUser, getRepositoriesByUser } from '../../service';
 import { NavBar } from '../../components/navbar';
-import { Card } from '../../components/card';
 import { Button } from '../../components/buttton';
+import { UserProfileContext } from '../../context/user';
 
 // https://api.github.com/users/tiagolopesdev
 // https://api.github.com/users/tiagolopesdev/repos
@@ -20,38 +20,46 @@ interface ProfileUserProps {
   id: string,
   name: string,
   public_repos: number,
-  avatar_url: string
+  avatar_url: string,
+  login: string
 }
 
-export const App = () => {
+export const DisplayAllRepositories = () => {
 
   const [repositories, setRepositories] = useState<RepositoryProps[]>([]);
   const [profileUser, setProfileUser] = useState<ProfileUserProps | null>(null);
   const [nickname, setNickName] = useState('');
+  const { assigUserProfile, user, isStorage, getStorageProfileUser, getProfileUserStored } = useContext(UserProfileContext);
+
+  useEffect(() => {    
+    
+    getStorageProfileUser()    
+
+    if (isStorage) {
+      getProfileUserStored()
+      getAllRepositories(user.login)
+    }
+  
+  }, [isStorage, nickname])
 
   const getAllRepositories = async (nickName: string) => {
     if (nickName !== '') {
 
-      console.log('Click');
+      var resProfile = await getProfileUser(nickName);
 
-      let resProfile = await getProfileUser(nickName);
-
-      const profileUserProp: ProfileUserProps = {
+      const profileUserProp: ProfileUserProps = await {
         id: resProfile.id,
         name: resProfile.name,
         public_repos: resProfile.public_repos,
-        avatar_url: resProfile.avatar_url
+        avatar_url: resProfile.avatar_url,
+        login: resProfile.login
       }
 
-      console.log('Data profile prop, ', profileUserProp);
+      await assigUserProfile(profileUserProp)
       
       setProfileUser(profileUserProp);
 
-      await console.log('Data profile, ', profileUser);
-
       setRepositories(await getRepositoriesByUser(nickName));
-
-      await console.log(repositories);
 
       return repositories;
 
@@ -96,12 +104,12 @@ export const App = () => {
         </NavBar>
       </div>
 
-      <Card />
+      {/* <Card /> */}
 
-      {/* <div
+      <div
         style={{
           'marginTop': '10%',
-          'display': 'flex',
+          'display': 'grid',
           'justifyContent': 'center'
         }}
       >
@@ -179,8 +187,7 @@ export const App = () => {
             </div>
           </>
         })}
-      </div> */}
+      </div>
     </div >
   );
 }
-

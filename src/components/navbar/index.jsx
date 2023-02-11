@@ -1,6 +1,6 @@
 import './style.css';
 
-export const NavBar = ({children, ...props}) => {
+export const NavBar = ({children, props}) => {
 
     return (
         <div style={{
@@ -19,7 +19,7 @@ export const NavBar = ({children, ...props}) => {
                 className='imgStyle'
                 alt='img profile'
             />
-
+            
             {children}
 
             <p style={{
