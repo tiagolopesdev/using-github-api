@@ -4,7 +4,10 @@ import { Body } from "./style";
 
 export const Card = ({props}) => {
 
-    console.log('User in component, ',props.topics);    
+    const redirectToGithub = () => {
+        console.log('in function');
+        window.location.href = `${props.svn_url}`;
+    }
  
     return (
         <Body>
@@ -55,6 +58,7 @@ export const Card = ({props}) => {
                     </div>
                     <Button 
                         diplaytext={'Ver repositórios'}
+                        onClick={() => redirectToGithub()}
                     />
                 </div>                
             </div>
