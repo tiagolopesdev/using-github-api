@@ -17,11 +17,7 @@ export const UserProfileProvider = ({ children }: any) => {
 
     const getStorageProfileUser = async () => {
 
-        console.log('Is logged ', isStorage);
-        
         const profileExist = await getProfileUserStored()
-        
-        //console.log('Value of the profile in context ', profileExist);
 
         if (profileExist.login !== 'null') setIsStorage(true);
     }

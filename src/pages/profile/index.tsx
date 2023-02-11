@@ -5,8 +5,6 @@ export const Profile = () => {
 
     const { user, isStorage, getStorageProfileUser, getProfileUserStored } = useContext(UserProfileContext);
 
-    console.log('user in profile', user);
-
     useEffect(() => {    
     
         getStorageProfileUser()    
