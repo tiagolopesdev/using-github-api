@@ -1,14 +1,8 @@
 import { createContext, useState } from "react";
+import { IProfileUserProps } from "../types/profileUser";
 
 export const UserProfileContext = createContext({} as any);
 
-interface IProfileUserProps {
-    id: string,
-    name: string,
-    public_repos: string,
-    avatar_url: string,
-    login: string
-}
 
 export const UserProfileProvider = ({ children }: any) => {
 

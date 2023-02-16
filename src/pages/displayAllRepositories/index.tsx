@@ -5,26 +5,13 @@ import { NavBar } from '../../components/navbar';
 import { Button } from '../../components/buttton';
 import { UserProfileContext } from '../../context/user';
 import { Card } from '../../components/card';
+import { IProfileUserProps } from '../../types/profileUser';
+import { IRepositoryProps } from '../../types/repositories';
 
-interface RepositoryProps {
-  id: string,
-  name: string,
-  description: string,
-  clone_url: string,
-  svn_url: string,
-  topics: []
-}
-interface ProfileUserProps {
-  id: string,
-  name: string,
-  public_repos: number,
-  avatar_url: string,
-  login: string
-}
 
 export const DisplayAllRepositories = () => {
 
-  const [repositories, setRepositories] = useState<RepositoryProps[]>([]);
+  const [repositories, setRepositories] = useState<IRepositoryProps[]>([]);
   const [nickname, setNickName] = useState('');
   const { setProfileUserLocalStored, user, isStorage, getStorageProfileUser, getProfileUserStored } = useContext(UserProfileContext);
 
@@ -44,7 +31,7 @@ export const DisplayAllRepositories = () => {
 
       var resProfile = await getProfileUser(nickName);
 
-      const profileUserProp: ProfileUserProps = await {
+      const profileUserProp: IProfileUserProps = await {
         id: resProfile.id,
         name: resProfile.name,
         public_repos: resProfile.public_repos,
