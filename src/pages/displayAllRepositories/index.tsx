@@ -7,6 +7,7 @@ import { UserProfileContext } from '../../context/user';
 import { Card } from '../../components/card';
 import { IProfileUserProps } from '../../types/profileUser';
 import { IRepositoryProps } from '../../types/repositories';
+import { Input } from '../../components/input';
 
 
 export const DisplayAllRepositories = () => {
@@ -57,17 +58,9 @@ export const DisplayAllRepositories = () => {
       <div>        
         <NavBar props={user} >
           <div>
-            <input
-              type='text'
+            <Input 
               placeholder='Digite o nume do usuário'
-              onChange={(e) => setNickName(e.target.value)}
-              style={{
-                'border': 'none',
-                'padding': '0.8rem',
-                'marginRight': '10px',
-                'borderRadius': '30px',
-                'outlineStyle': 'none'
-              }}
+              onChange={(e: any) => setNickName(e.target.value)}
             />
             <Button
               diplaytext={'Search'}
