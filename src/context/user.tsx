@@ -22,12 +22,12 @@ export const UserProfileProvider = ({ children }: any) => {
         if (profileExist.login !== 'null') setIsStorage(true);
     }
 
-    const setProfileUser = (id: string, name: string, public_repos: string, avatar_url: string, login: string) => {
-        localStorage.setItem("profileUser.id", id)
-        localStorage.setItem("profileUser.name", name)
-        localStorage.setItem("profileUser.public_repos", public_repos.toString())
-        localStorage.setItem("profileUser.avatar_url", avatar_url)
-        localStorage.setItem("profileUser.login", login)
+    const setProfileUserLocalStored = (props: IProfileUserProps) => {        
+        localStorage.setItem("profileUser.id", props.id)
+        localStorage.setItem("profileUser.name", props.name)
+        localStorage.setItem("profileUser.public_repos", props.public_repos.toString())
+        localStorage.setItem("profileUser.avatar_url", props.avatar_url)
+        localStorage.setItem("profileUser.login", props.login)
     };
 
     const getProfileUserStored = async (): Promise<IProfileUserProps> => {
@@ -48,20 +48,10 @@ export const UserProfileProvider = ({ children }: any) => {
         return userProfile;
     }
 
-    const assigUserProfile = async (profileUserProps: IProfileUserProps) => {
-        await setProfileUser(
-            profileUserProps.id, 
-            profileUserProps.name, 
-            profileUserProps.public_repos, 
-            profileUserProps.avatar_url,
-            profileUserProps.login
-        );        
-    }
-
     return (
         <UserProfileContext.Provider 
             value={{ 
-                assigUserProfile, 
+                setProfileUserLocalStored,
                 user,
                 getProfileUserStored,
                 getStorageProfileUser,
