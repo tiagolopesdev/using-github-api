@@ -1,4 +1,6 @@
 import './style.css';
+import ProfileIcon from '../../assets/profile.svg';
+import SettingsIcon from '../../assets/settings.svg';
 
 export const NavBar = ({children, props}) => {
 
@@ -13,8 +15,17 @@ export const NavBar = ({children, props}) => {
             background: '#4097E7',
             'boxShadow': '0px 4px 12px 1px rgba(0, 0, 0, 0.5)',
         }}>
-
-            <img 
+            <div
+                style={{
+                    display: 'flex',
+                    justifyContent: 'center',
+                }}
+            >
+                <img src={SettingsIcon} alt='Icon profile page' style={{ width: '40px', margin: '15px' }}/>
+                <img src={ProfileIcon} alt='Icon profile page' style={{ width: '40px', margin: '15px' }}/>
+            </div>
+            
+            {/* <img 
                 src={props?.avatar_url} 
                 className='imgStyle'
                 alt='img profile'
@@ -30,7 +41,7 @@ export const NavBar = ({children, props}) => {
                 'color': '#FFFFFF',
             }}>
                 Repositórios: {props?.public_repos}
-            </p>
+            </p> */}
         </div >
     );
 }
