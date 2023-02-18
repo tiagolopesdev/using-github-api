@@ -5,17 +5,17 @@ export const Profile = () => {
 
     const { user, isStorage, getStorageProfileUser, getProfileUserStored } = useContext(UserProfileContext);
 
-    useEffect(() => {    
-    
-        getStorageProfileUser()    
-    
+    useEffect(() => {
+
+        getStorageProfileUser()
+
         if (isStorage) {
-          getProfileUserStored()
+            getProfileUserStored()
         }
-      
+
     }, [isStorage])
 
-    return(
+    return (
         <>
             <h1>Acesso aos dados do perfil</h1>
             <div>

@@ -1,6 +1,6 @@
 import './App.css';
 import { useContext, useState, useEffect } from 'react';
-import { getProfileUser, getRepositoriesByUser } from '../../service';
+import { getCommitsByRepository, getProfileUser, getRepositoriesByUser } from '../../service';
 import { NavBar } from '../../components/navbar';
 import { Button } from '../../components/buttton';
 import { UserProfileContext } from '../../context/user';
@@ -32,7 +32,7 @@ export const DisplayAllRepositories = () => {
 
       var resProfile = await getProfileUser(nickName);
 
-      const profileUserProp: IProfileUserProps = await {
+      const profileUserProp: IProfileUserProps = {
         id: resProfile.id,
         name: resProfile.name,
         public_repos: resProfile.public_repos,
@@ -44,10 +44,17 @@ export const DisplayAllRepositories = () => {
 
       await getProfileUserStored();
 
-      setRepositories(await getRepositoriesByUser(nickName));
+      const responseAllRepositories = await getRepositoriesByUser(nickName);
+
+      responseAllRepositories.map(async (item: any) => {        
+        const allCommits = await getCommitsByRepository(nickName, item.name)
+        item.commits = allCommits.length
+      });
+      
+      setRepositories(responseAllRepositories);
 
       return repositories;
-
+      
     } else if (nickName === '' && !repositories) {
       setRepositories([]);
     }
