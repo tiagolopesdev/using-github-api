@@ -7,8 +7,6 @@ export const Card = ({props}) => {
     const redirectToGithub = () => {
         window.location.href = `${props.svn_url}`;
     }
-
-    //console.log('Repository in card component ', props);
  
     return (
         <Body>
