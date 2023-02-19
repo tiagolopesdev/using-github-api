@@ -62,19 +62,8 @@ export const DisplayAllRepositories = () => {
 
   return (
     <div className="App">
-      <div>        
-        <NavBar props={user} >
-          <div>
-            <Input 
-              placeholder='Digite o nume do usuário'
-              onChange={(e: any) => setNickName(e.target.value)}
-            />
-            <Button
-              diplaytext={'Search'}
-              onClick={() => getAllRepositories(nickname)}
-            />
-          </div>
-        </NavBar>
+      <div> 
+        <NavBar /> 
       </div>
 
       <div style={{

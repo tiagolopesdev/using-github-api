@@ -1,4 +1,5 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect } from "react";
+import { NavBar } from "../../components/navbar";
 import { UserProfileContext } from "../../context/user";
 
 export const Profile = () => {
@@ -17,6 +18,7 @@ export const Profile = () => {
 
     return (
         <>
+            <NavBar />
             <h1>Acesso aos dados do perfil</h1>
             <div>
                 <h1>{user?.name}</h1>
