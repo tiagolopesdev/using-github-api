@@ -1,21 +1,19 @@
 import './App.css';
 import { useContext, useState, useEffect } from 'react';
-import { getCommitsByRepository, getProfileUser, getRepositoriesByUser } from '../../service';
+import { getCommitsByRepository, getRepositoriesByUser } from '../../service';
 import { NavBar } from '../../components/navbar';
-import { Button } from '../../components/buttton';
 import { UserProfileContext } from '../../context/user';
 import { Card } from '../../components/card';
-import { IProfileUserProps } from '../../types/profileUser';
 import { IRepositoryProps } from '../../types/repositories';
-import { Input } from '../../components/input';
 
 
 export const DisplayAllRepositories = () => {
 
   const [repositories, setRepositories] = useState<IRepositoryProps[]>([]);
   const [nickname, setNickName] = useState('');
-  const { setProfileUserLocalStored, user, isStorage, getStorageProfileUser, getProfileUserStored } = useContext(UserProfileContext);
+  const { user, isStorage, getStorageProfileUser, getProfileUserStored } = useContext(UserProfileContext);
 
+  
   useEffect(() => {
 
     getStorageProfileUser()
@@ -30,21 +28,7 @@ export const DisplayAllRepositories = () => {
   const getAllRepositories = async (nickName: string) => {
     if (nickName !== '') {
 
-      var resProfile = await getProfileUser(nickName);
-
-      const profileUserProp: IProfileUserProps = {
-        id: resProfile.id,
-        name: resProfile.name,
-        public_repos: resProfile.public_repos,
-        avatar_url: resProfile.avatar_url,
-        login: resProfile.login
-      }
-
-      await setProfileUserLocalStored(profileUserProp)
-
-      await getProfileUserStored();
-
-      const responseAllRepositories = await getRepositoriesByUser(nickName);
+      const responseAllRepositories = await getRepositoriesByUser(user.login);
 
       responseAllRepositories.map(async (item: any) => {        
         const allCommits = await getCommitsByRepository(nickName, item.name)

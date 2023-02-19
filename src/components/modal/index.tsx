@@ -1,14 +1,42 @@
 
 import { TextField } from '@mui/material';
-import { useState } from 'react';
+import { useContext, useState, useEffect } from 'react';
 import { Modal } from 'react-bootstrap';
 import Button from '@mui/material/Button';
+import { IRepositoryProps } from '../../types/repositories';
+import { UserProfileContext } from '../../context/user';
+import { getProfileUser } from '../../service';
+import { IProfileUserProps } from '../../types/profileUser';
 
 export const ModalComponent = ({children}: any) => {
+  
   const [show, setShow] = useState(false);
+  const [nickname, setNickName] = useState('');
+  const [repositories, setRepositories] = useState<IRepositoryProps[]>([]);
+  const { setProfileUserLocalStored } = useContext(UserProfileContext);
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+
+  const handleSetNickname = async () => {
+    if (nickname !== '') {
+      
+      var resProfile = await getProfileUser(nickname);
+
+      const profileUserProp: IProfileUserProps = {
+        id: resProfile.id,
+        name: resProfile.name,
+        public_repos: resProfile.public_repos,
+        avatar_url: resProfile.avatar_url,
+        login: resProfile.login
+      }
+
+      await setProfileUserLocalStored(profileUserProp)      
+      
+    } else if (nickname === '' && !repositories) {
+      setRepositories([]);
+    }
+  }
 
   return (
     <>
@@ -40,7 +68,7 @@ export const ModalComponent = ({children}: any) => {
           <TextField
             label='Nickname'
             variant="standard"
-            onChange={(e: any) => console.log('Clickando')}
+            onChange={(event: any) => { setNickName(event.target.value) }}
           />
           <div style={{
             marginTop: '8%',
@@ -48,6 +76,7 @@ export const ModalComponent = ({children}: any) => {
             justifyContent: 'center'
           }}>
             <Button
+              onClick={handleSetNickname}
               variant="contained"
               style={{
                 margin: '2%',
