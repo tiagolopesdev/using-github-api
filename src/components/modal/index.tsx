@@ -1,6 +1,6 @@
 
 import { TextField } from '@mui/material';
-import { useContext, useState, useEffect } from 'react';
+import React, { useContext, useState } from 'react';
 import { Modal } from 'react-bootstrap';
 import Button from '@mui/material/Button';
 import { IRepositoryProps } from '../../types/repositories';
@@ -8,7 +8,11 @@ import { UserProfileContext } from '../../context/user';
 import { getProfileUser } from '../../service';
 import { IProfileUserProps } from '../../types/profileUser';
 
-export const ModalComponent = ({children}: any) => {
+interface IModalComponentProps {
+  children: React.ReactNode
+}
+
+export const ModalComponent = ({children}: IModalComponentProps) => {
   
   const [show, setShow] = useState(false);
   const [nickname, setNickName] = useState('');
