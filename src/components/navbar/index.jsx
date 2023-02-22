@@ -5,6 +5,7 @@ import SettingsIcon from '../../assets/settings.svg';
 import { ModalComponent } from '../modal';
 import Button from '@mui/material/Button';
 import { Link } from 'react-router-dom';
+import { ActionIcon } from '../actionIcons';
 
 const styleButton = {
     height: '55px'
@@ -30,20 +31,26 @@ export const NavBar = () => {
                 }}
             >
                 <ModalComponent>
-                    <img src={SettingsIcon} alt='Icon profile page' style={{ width: '40px', margin: '15px' }} />
+                    <ActionIcon
+                        src={SettingsIcon}
+                        descriptAlt='Icon settings user'
+                    />
                 </ModalComponent>
-                <Link 
-                    to='/profile' 
+                <Link
+                    to='/profile'
                     style={{
-                    alignSelf: 'center',
-                    borderRadius: '15px',
-                    backgroundColor: '#114df545',
-                    marginLeft: '2%'
-                }}>
+                        alignSelf: 'center',
+                        borderRadius: '15px',
+                        backgroundColor: '#114df545',
+                        marginLeft: '2%'
+                    }}>
                     <Button
                         sx={styleButton}
                     >
-                        <img src={ProfileIcon} alt='Icon profile page' style={{ width: '40px', margin: '15px' }} />
+                        <ActionIcon
+                            src={ProfileIcon}
+                            descriptAlt='Icon profile page'
+                        />
                     </Button>
                 </Link>
                 <Link to='/' style={{
@@ -55,7 +62,10 @@ export const NavBar = () => {
                     <Button
                         sx={styleButton}
                     >
-                        <img src={ListIcon} alt='Icon profile page' style={{ width: '40px', margin: '15px' }} />
+                        <ActionIcon
+                            src={ListIcon}
+                            descriptAlt='Icon list repositories'
+                        />
                     </Button>
                 </Link>
             </div>
