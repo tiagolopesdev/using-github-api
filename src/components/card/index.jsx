@@ -2,17 +2,17 @@ import { Button } from "../buttton";
 import { Tag } from "../tag";
 import { Body } from "./style";
 
-export const Card = ({props}) => {
+export const Card = ({ props }) => {
 
     const redirectToGithub = () => {
         window.location.href = `${props.svn_url}`;
     }
- 
+
     return (
-        <Body>
+        <Body key={props.id}>
             <div style={{ 'display': 'flex' }}>
-                 <div style={{width: '80%'}}>
-                     <div style={{
+                <div style={{ width: '80%' }}>
+                    <div style={{
                         'textAlign': 'start',
                         'width': '75%'
                     }}>
@@ -55,15 +55,15 @@ export const Card = ({props}) => {
                             'fontSize': 'xx-large'
                         }}>{props.commits}</h3>
                     </div>
-                    <Button 
+                    <Button
                         displaytext={'Ver repositórios'}
                         onClick={() => redirectToGithub()}
                     />
-                </div>                
+                </div>
             </div>
-            <div style={{'marginTop': '3%'}}>
-                {props.topics.map(topic => { return <Tag name={topic}/>})}
+            <div style={{ 'marginTop': '3%' }}>
+                {props.topics.map(topic => { return <Tag name={topic} /> })}
             </div>
-        </Body>        
+        </Body>
     );
 }
