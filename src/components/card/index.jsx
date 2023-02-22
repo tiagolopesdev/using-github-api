@@ -56,7 +56,7 @@ export const Card = ({props}) => {
                         }}>{props.commits}</h3>
                     </div>
                     <Button 
-                        diplaytext={'Ver repositórios'}
+                        displaytext={'Ver repositórios'}
                         onClick={() => redirectToGithub()}
                     />
                 </div>                
