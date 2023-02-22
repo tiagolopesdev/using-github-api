@@ -6,6 +6,10 @@ import { ModalComponent } from '../modal';
 import Button from '@mui/material/Button';
 import { Link } from 'react-router-dom';
 
+const styleButton = {
+    height: '55px'
+}
+
 export const NavBar = () => {
 
     return (
@@ -28,16 +32,16 @@ export const NavBar = () => {
                 <ModalComponent>
                     <img src={SettingsIcon} alt='Icon profile page' style={{ width: '40px', margin: '15px' }} />
                 </ModalComponent>
-                <Link to='/profile' style={{
+                <Link 
+                    to='/profile' 
+                    style={{
                     alignSelf: 'center',
                     borderRadius: '15px',
                     backgroundColor: '#114df545',
                     marginLeft: '2%'
                 }}>
                     <Button
-                        style={{
-                            height: '55px'
-                        }}
+                        sx={styleButton}
                     >
                         <img src={ProfileIcon} alt='Icon profile page' style={{ width: '40px', margin: '15px' }} />
                     </Button>
@@ -49,9 +53,7 @@ export const NavBar = () => {
                     marginLeft: '2%'
                 }}>
                     <Button
-                        style={{
-                            height: '55px'
-                        }}
+                        sx={styleButton}
                     >
                         <img src={ListIcon} alt='Icon profile page' style={{ width: '40px', margin: '15px' }} />
                     </Button>
