@@ -7,6 +7,13 @@ import Button from '@mui/material/Button';
 import { Link } from 'react-router-dom';
 import { ActionIcon } from '../actionIcons';
 
+const styleLink = {
+    alignSelf: 'center',
+    borderRadius: '15px',
+    backgroundColor: '#114df545',
+    marginLeft: '2%'
+}
+
 const styleButton = {
     height: '55px'
 }
@@ -36,14 +43,7 @@ export const NavBar = () => {
                         descriptAlt='Icon settings user'
                     />
                 </ModalComponent>
-                <Link
-                    to='/profile'
-                    style={{
-                        alignSelf: 'center',
-                        borderRadius: '15px',
-                        backgroundColor: '#114df545',
-                        marginLeft: '2%'
-                    }}>
+                <Link to='/profile' style={styleLink}>
                     <Button
                         sx={styleButton}
                     >
@@ -53,12 +53,7 @@ export const NavBar = () => {
                         />
                     </Button>
                 </Link>
-                <Link to='/' style={{
-                    alignSelf: 'center',
-                    borderRadius: '15px',
-                    backgroundColor: '#114df545',
-                    marginLeft: '2%'
-                }}>
+                <Link to='/' style={styleLink}>
                     <Button
                         sx={styleButton}
                     >
