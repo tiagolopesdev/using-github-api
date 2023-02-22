@@ -1,9 +1,9 @@
 import { ButtonStyle } from "./style";
 
-export const Button = ({displaytext, ...props}) => {
+export const Button = (...props) => {
     return (
         <ButtonStyle {...props}>
-            {displaytext}
+            {props[0].displaytext}
         </ButtonStyle>
     );
 }
