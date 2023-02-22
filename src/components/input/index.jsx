@@ -1,19 +1,12 @@
 import { InputStyle } from "./style";
 
-export const Input = ({ placeholder, ...props }) => {
+export const Input = (...props) => {
 
     return (
         <InputStyle 
             {...props}
             type='text'
-            placeholder={placeholder}
-            style={{
-                'border': 'none',
-                'padding': '0.8rem',
-                'marginRight': '10px',
-                'borderRadius': '30px',
-                'outlineStyle': 'none'
-            }}
+            placeholder={props[0].placeholder}
         />
     );
 }
