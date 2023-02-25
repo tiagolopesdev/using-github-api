@@ -1,9 +1,11 @@
 import styled from "styled-components";
 
 export const Body = styled.div`
-    height: 10rem;
-    background-color: #367abe;
+    height: auto;
+    padding: 1.5rem;
     border-radius: 20px;
-    width: 40rem;
-    display: flex;
+    background-color: #3f6dd5;
+    margin: 2% 5%;
+    color: white;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px
 `;

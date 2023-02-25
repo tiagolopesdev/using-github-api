@@ -1,14 +1,20 @@
-import { api } from "./api"
+import { userChannel, repositoryChannel } from "./api"
 
 // https://api.github.com/users/tiagolopesdev
 // https://api.github.com/users/tiagolopesdev/repos
+// https://api.github.com/repos/tiagolopesdev/cobranca/commits
+
+export const getCommitsByRepository = async (nickName: string, nameRepository: string) => {
+    const response = await repositoryChannel.get(`${nickName}/${nameRepository}/commits`);
+    return response.data;
+}
 
 export const getProfileUser = async (user: string) => {
-    return await api.get(`${user}`)
-        .then(res => { return res.data });;
+    const response = await userChannel.get(`${user}`);
+    return response.data;
 }
 
 export const getRepositoriesByUser = async (user: string) => {
-    return await api.get(`${user}/repos`)
-        .then((res) => { return res.data });
+    const response = await userChannel.get(`${user}/repos`);
+    return response.data;
 }
