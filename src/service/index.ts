@@ -1,4 +1,4 @@
-import { userChannel, repositoryChannel } from "./api"
+import { userChannel, repositoryChannel } from "./bases/api"
 
 // https://api.github.com/users/tiagolopesdev
 // https://api.github.com/users/tiagolopesdev/repos

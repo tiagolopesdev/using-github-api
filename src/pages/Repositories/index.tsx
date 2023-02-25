@@ -1,25 +1,17 @@
-import './App.css';
 import { useContext, useState, useEffect } from 'react';
 import { getCommitsByRepository, getRepositoriesByUser } from '../../service';
-import { NavBar } from '../../components/navbar';
+import { NavBar } from '../../components/NavBar';
 import { UserProfileContext } from '../../context/user';
-import { Card } from '../../components/card';
-import { IRepositoryProps } from '../../types/repositories';
+import { Card } from '../../components/Card';
+import { IRepositoryProps } from '../../@types/repositories';
 
+import './App.css';
 
-export const DisplayAllRepositories = () => {
+export const Repositories = () => {
 
   const [repositories, setRepositories] = useState<IRepositoryProps[]>([]);
   const { isStorage, setIsStorage, getProfileUserStored } = useContext(UserProfileContext);
   const [user] = useState(getProfileUserStored());
-
-
-  console.log('Tes ', user)
-
-  useEffect(() => {
-    getAllRepositories(user);
-    if (isStorage) setIsStorage(false);   
-  }, [])
 
   const getAllRepositories = async (nickName: string) => {
     if (nickName !== '') {
@@ -39,6 +31,12 @@ export const DisplayAllRepositories = () => {
       setRepositories([]);
     }
   }
+  
+  useEffect(() => {
+    getAllRepositories(user);
+    if (isStorage) setIsStorage(false);   
+  }, [])
+
 
   return (
     <div className="App">

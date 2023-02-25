@@ -1,5 +1,5 @@
 import { useContext, useEffect } from "react";
-import { NavBar } from "../../components/navbar";
+import { NavBar } from "../../components/NavBar";
 import { UserProfileContext } from "../../context/user";
 
 export const Profile = () => {

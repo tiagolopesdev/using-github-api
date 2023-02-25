@@ -1,5 +1,5 @@
-import { Button } from "../buttton";
-import { Tag } from "../tag";
+import { Button } from "../Button";
+import { Tag } from "../Tag";
 import { Body } from "./style";
 
 export const Card = ({ props }) => {

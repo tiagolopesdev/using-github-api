@@ -2,10 +2,10 @@ import './style.css';
 import ListIcon from '../../assets/list.svg';
 import ProfileIcon from '../../assets/profile.svg';
 import SettingsIcon from '../../assets/settings.svg';
-import { ModalComponent } from '../modal';
+import { ModalComponent } from '../Modal';
 import Button from '@mui/material/Button';
 import { Link } from 'react-router-dom';
-import { ActionIcon } from '../actionIcons';
+import { ActionIcon } from '../ActionIcons';
 
 const styleLink = {
     alignSelf: 'center',

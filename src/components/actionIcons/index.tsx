@@ -1,8 +1,8 @@
+import { HTMLAttributes } from "react";
 import { ImgStyle } from "./style";
 
+interface IActionIconProps extends HTMLAttributes<HTMLImageElement> {}
 
-export const ActionIcon = ({...props}) => {
-  return (
-    <ImgStyle {...props} alt={props.descriptAlt}/>
-  );
+export function ActionIcon(props: IActionIconProps){
+  return <ImgStyle {...props}/>
 }

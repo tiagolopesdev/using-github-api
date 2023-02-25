@@ -1,5 +1,5 @@
 import { createContext, ReactNode, useEffect, useState } from "react";
-import { IProfileUserProps } from "../types/profileUser";
+import { IProfileUserProps } from "../@types/profileUser";
 
 interface IUserProfileContext {
     children: ReactNode | ReactNode[];
