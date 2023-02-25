@@ -6,15 +6,15 @@ export const Profile = () => {
 
     const { user, isStorage, getStorageProfileUser, getProfileUserStored } = useContext(UserProfileContext);
 
-    useEffect(() => {
+    // useEffect(() => {
 
-        getStorageProfileUser()
+    //     getStorageProfileUser()
 
-        if (isStorage) {
-            getProfileUserStored()
-        }
+    //     if (isStorage) {
+    //         getProfileUserStored()
+    //     }
 
-    }, [isStorage])
+    // }, [isStorage])
 
     return (
         <>

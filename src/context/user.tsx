@@ -1,20 +1,28 @@
-import { createContext, useState } from "react";
+import { createContext, ReactNode, useEffect, useState } from "react";
 import { IProfileUserProps } from "../types/profileUser";
+
+interface IUserProfileContext {
+    children: ReactNode | ReactNode[];
+}
 
 export const UserProfileContext = createContext({} as any);
 
 
-export const UserProfileProvider = ({ children }: any) => {
+export const UserProfileProvider = ({ children }: IUserProfileContext) => {
 
-    const [user, setUser] = useState<IProfileUserProps>();
+    //const [user, setUser] = useState<IProfileUserProps>();
     const [isStorage, setIsStorage] = useState(false);
 
-    const getStorageProfileUser = async () => {
+    // useEffect(() => {
+    //     if(isStorage) {
+    //         const userCurrent = getProfileUserStored();
+    //         console.log('If COntext ', userCurrent)
+    //         setUser(userCurrent)
+    //     }
+    // }, [isStorage, user])
 
-        const profileExist = await getProfileUserStored()
-
-        if (profileExist.login !== 'null') setIsStorage(true);
-    }
+    // console.log('User in context ', user)
+    // console.log('IsStored ', isStorage)
 
     const setProfileUserLocalStored = (props: IProfileUserProps) => {        
         localStorage.setItem("profileUser.id", props.id)
@@ -22,9 +30,10 @@ export const UserProfileProvider = ({ children }: any) => {
         localStorage.setItem("profileUser.public_repos", props.public_repos.toString())
         localStorage.setItem("profileUser.avatar_url", props.avatar_url)
         localStorage.setItem("profileUser.login", props.login)
+        setIsStorage(true);
     };
 
-    const getProfileUserStored = async (): Promise<IProfileUserProps> => {
+    const getProfileUserStored = () => {
         
         var userProfile: IProfileUserProps = { id: '', name: '', public_repos: '', avatar_url: '', login: '' };
         
@@ -37,19 +46,17 @@ export const UserProfileProvider = ({ children }: any) => {
             avatar_url: `${localStorage.getItem("profileUser.avatar_url")}`,
             login: `${localStorage.getItem("profileUser.login")}`
         }
-        setUser(userProfile);
-
-        return userProfile;
+        return userProfile
     }
 
     return (
         <UserProfileContext.Provider 
             value={{ 
                 setProfileUserLocalStored,
-                user,
+                //user,
                 getProfileUserStored,
-                getStorageProfileUser,
-                isStorage
+                isStorage,
+                setIsStorage
             }}
         >
             {children}
