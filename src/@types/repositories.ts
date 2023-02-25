@@ -1,4 +1,3 @@
-
 export interface IRepositoryProps {
     id: string,
     name: string,
