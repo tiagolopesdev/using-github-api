@@ -16,8 +16,7 @@ export const ModalComponent = ({children}: IModalComponentProps) => {
   
   const [show, setShow] = useState(false);
   const [nickname, setNickName] = useState('');
-  const [repositories, setRepositories] = useState<IRepositoryProps[]>([]);
-  const { setProfileUserLocalStored } = useContext(UserProfileContext);
+  const { handleSetUserProfile } = useContext(UserProfileContext);
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -25,7 +24,7 @@ export const ModalComponent = ({children}: IModalComponentProps) => {
   const handleSetNickname = async () => {
     if (nickname !== '') {
       
-      var resProfile = await getProfileUser(nickname);
+      let resProfile = await getProfileUser(nickname);
 
       const profileUserProp: IProfileUserProps = {
         id: resProfile.id,
@@ -35,11 +34,10 @@ export const ModalComponent = ({children}: IModalComponentProps) => {
         login: resProfile.login
       }
 
-      await setProfileUserLocalStored(profileUserProp)      
-      
-    } else if (nickname === '' && !repositories) {
-      setRepositories([]);
-    }
+     
+     handleSetUserProfile(profileUserProp)      
+    
+    } 
   }
 
   return (
@@ -89,10 +87,10 @@ export const ModalComponent = ({children}: IModalComponentProps) => {
             >Buscar usuário</Button>
             <Button
               variant="outlined"
-              style={{
-                margin: '2%',
+              sx={{
+                m: '2%',
                 borderRadius: '20px',
-                width: '30%'
+                width:'30%',
               }}
               onClick={() => handleClose()}
             >Close</Button>

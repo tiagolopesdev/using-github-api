@@ -1,12 +1,11 @@
+import { HTMLAttributes } from "react";
 import { InputStyle } from "./style";
 
-export const Input = (...props) => {
+interface IInputProps extends HTMLAttributes<HTMLInputElement> {}
+
+export const Input = (props: IInputProps) => {
 
     return (
-        <InputStyle 
-            {...props}
-            type='text'
-            placeholder={props[0].placeholder}
-        />
+        <InputStyle {...props} />
     );
 }

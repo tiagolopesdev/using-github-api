@@ -1,25 +1,25 @@
-import { useContext, useState, useEffect } from 'react';
+import { useContext, useState, useEffect, useCallback } from 'react';
 import { getCommitsByRepository, getRepositoriesByUser } from '../../service';
-import { NavBar } from '../../components/NavBar';
+import { NavBar } from '../../components/Navbar';
 import { UserProfileContext } from '../../context/user';
 import { Card } from '../../components/Card';
 import { IRepositoryProps } from '../../@types/repositories';
 
 import './App.css';
+import { IProfileUserProps } from '../../@types/profileUser';
 
 export const Repositories = () => {
 
   const [repositories, setRepositories] = useState<IRepositoryProps[]>([]);
-  const { isStorage, setIsStorage, getProfileUserStored } = useContext(UserProfileContext);
-  const [user] = useState(getProfileUserStored());
+  const { user } = useContext(UserProfileContext);
 
-  const getAllRepositories = async (nickName: string) => {
-    if (nickName !== '') {
+  const getAllRepositories = async (actualUser: IProfileUserProps) => {
+    if (actualUser.login !== '') {
 
-      const responseAllRepositories = await getRepositoriesByUser(user.login);
+      const responseAllRepositories = await getRepositoriesByUser(actualUser.login);
 
       responseAllRepositories.map(async (item: any) => {
-        const allCommits = await getCommitsByRepository(nickName, item.name)
+        const allCommits = await getCommitsByRepository(actualUser.login, item.name)
         item.commits = allCommits.length
       });
 
@@ -27,16 +27,15 @@ export const Repositories = () => {
 
       return repositories;
 
-    } else if (nickName === '' && !repositories) {
+    } else if (actualUser.login === '' && repositories) {
       setRepositories([]);
     }
+
   }
-  
+
   useEffect(() => {
     getAllRepositories(user);
-    if (isStorage) setIsStorage(false);   
-  }, [])
-
+  }, [user])
 
   return (
     <div className="App">
@@ -52,7 +51,8 @@ export const Repositories = () => {
         {repositories.map(repository => {
             return (
               <Card
-                props={repository}
+                key={repository.id}
+                repository={repository}
               />
             )
           })}

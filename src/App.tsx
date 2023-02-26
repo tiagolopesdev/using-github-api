@@ -1,6 +1,6 @@
 import { BrowserRouter } from 'react-router-dom';
 import { UserProfileProvider } from './context/user';
-import { Router } from './Routes';
+import { Router } from './Router';
 
 export const App = () => {
   return (
@@ -11,3 +11,4 @@ export const App = () => {
     </BrowserRouter>
   );
 }
+

@@ -1,9 +1,15 @@
+import { ButtonHTMLAttributes } from "react";
 import { ButtonStyle } from "./style";
 
-export const Button = (...props) => {
+interface IButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {}
+
+export const Button = (props: IButtonProps) => {
+
+    const { children } = props;
+
     return (
         <ButtonStyle {...props}>
-            {props[0].displaytext}
+            {children}
         </ButtonStyle>
     );
 }

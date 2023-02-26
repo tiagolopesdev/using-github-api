@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const Body = styled.div`
+export const CardContainer = styled.div`
     height: auto;
     padding: 1.5rem;
     border-radius: 20px;
