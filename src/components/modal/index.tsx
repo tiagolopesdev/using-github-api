@@ -3,7 +3,6 @@ import { TextField } from '@mui/material';
 import React, { useContext, useState } from 'react';
 import { Modal } from 'react-bootstrap';
 import Button from '@mui/material/Button';
-import { IRepositoryProps } from '../../@types/repositories';
 import { UserProfileContext } from '../../context/user';
 import { getProfileUser } from '../../service';
 import { IProfileUserProps } from '../../@types/profileUser';
@@ -33,10 +32,8 @@ export const ModalComponent = ({children}: IModalComponentProps) => {
         avatar_url: resProfile.avatar_url,
         login: resProfile.login
       }
-
      
-     handleSetUserProfile(profileUserProp)      
-    
+      handleSetUserProfile(profileUserProp)      
     } 
   }
 
