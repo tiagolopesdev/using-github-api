@@ -7,8 +7,9 @@ import { Link } from 'react-router-dom';
 import { ActionIcon } from '../ActionIcons';
 
 import Button from '@mui/material/Button';
+import { NavbarContainer } from './style';
 
-import './style.css';
+
 
 const styleLink = {
     alignSelf: 'center',
@@ -23,9 +24,8 @@ const styleButton = {
 
 export const NavBar = () => {
 
-    //TODO: Convenção de uso de container
     return (
-        <div style={{
+        <NavbarContainer style={{
             position: 'fixed',
             display: 'grid',
             width: '100%',
@@ -65,6 +65,6 @@ export const NavBar = () => {
                     </Button>
                 </Link>
             </div>
-        </div >
+        </NavbarContainer >
     );
 }
