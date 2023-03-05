@@ -1,6 +1,6 @@
-import { useContext, useState, useEffect, useCallback } from 'react';
+import { useContext, useState, useEffect } from 'react';
 import { getCommitsByRepository, getRepositoriesByUser } from '../../service';
-import { NavBar } from '../../components/Navbar';
+import { NavBar } from '../../components/navbar';
 import { UserProfileContext } from '../../context/user';
 import { Card } from '../../components/Card';
 import { IRepositoryProps } from '../../@types/repositories';

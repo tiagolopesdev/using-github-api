@@ -1,20 +1,10 @@
-import { useContext, useEffect } from "react";
-import { NavBar } from "../../components/Navbar";
+import { useContext } from "react";
+import { NavBar } from "../../components/navbar";
 import { UserProfileContext } from "../../context/user";
 
 export const Profile = () => {
 
     const { user } = useContext(UserProfileContext);
-
-    // useEffect(() => {
-
-    //     getStorageProfileUser()
-
-    //     if (isStorage) {
-    //         getProfileUserStored()
-    //     }
-
-    // }, [isStorage])
 
     return (
         <>

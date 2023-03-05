@@ -2,9 +2,9 @@ import ListIcon from '../../assets/list.svg';
 import ProfileIcon from '../../assets/profile.svg';
 import SettingsIcon from '../../assets/settings.svg';
 
-import { ModalComponent } from '../Modal';
+import { ModalComponent } from '../modal';
 import { Link } from 'react-router-dom';
-import { ActionIcon } from '../ActionIcons';
+import { ActionIcon } from '../actionIcons';
 
 import Button from '@mui/material/Button';
 import { NavbarContainer } from './style';
