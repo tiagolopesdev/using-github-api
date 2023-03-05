@@ -1,7 +1,7 @@
 import { IRepositoryProps } from "../../@types/repositories";
 import { Button } from "../Button";
 import { Tag } from "../Tag";
-import { CardContainer, TopicListStyle } from "./style";
+import { CardContainer, CommitsContainerRight, ContainerLeft, InfosContainer, TopicListStyle } from "./style";
 
 interface ICardProps {
     repository: IRepositoryProps
@@ -13,11 +13,10 @@ export const Card = ({repository}: ICardProps) => {
         window.location.href = `${repository.svn_url}`;
     }
 
-    //TODO: tornar as divs mais semanticas usando o styled components
     return (
         <CardContainer>
-            <div style={{ 'display': 'flex' }}>
-                <div style={{ width: '80%' }}>
+            <InfosContainer >
+                <ContainerLeft>
                     <div style={{
                         'textAlign': 'start',
                         'width': '75%'
@@ -49,11 +48,8 @@ export const Card = ({repository}: ICardProps) => {
                             'borderRadius': '5px'
                         }}>{repository.clone_url}</p>
                     </div>
-                </div>
-                <div style={{
-                    'alignItems': 'center',
-                    'display': 'grid'
-                }}>
+                </ContainerLeft>
+                <CommitsContainerRight >
                     <div>
                         <p>Commits</p>
                         <h3 style={{
@@ -62,8 +58,8 @@ export const Card = ({repository}: ICardProps) => {
                         }}>{repository.commits}</h3>
                     </div>
                     <Button onClick={() => redirectToGithub()}>Ver repositórios</Button>
-                </div>
-            </div>
+                </CommitsContainerRight>
+            </InfosContainer>
             <TopicListStyle>
                 {repository.topics.map(topic => { return <Tag name={topic} /> })}
             </TopicListStyle>

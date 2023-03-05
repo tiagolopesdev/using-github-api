@@ -1,5 +1,18 @@
 import styled from "styled-components";
 
+export const ContainerLeft = styled.div`
+    width: 80%;
+`;
+
+export const CommitsContainerRight = styled.div`
+    align-items: center;
+    display: grid;
+`;
+
+export const InfosContainer = styled.div`
+    display: flex;
+`;
+
 export const TopicListStyle = styled.div`
     margin-top: 3%;
 `;
