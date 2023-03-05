@@ -1,7 +1,7 @@
 import { IRepositoryProps } from "../../@types/repositories";
 import { Button } from "../Button";
 import { Tag } from "../Tag";
-import { CardContainer } from "./style";
+import { CardContainer, TopicListStyle } from "./style";
 
 interface ICardProps {
     repository: IRepositoryProps
@@ -64,9 +64,9 @@ export const Card = ({repository}: ICardProps) => {
                     <Button onClick={() => redirectToGithub()}>Ver repositórios</Button>
                 </div>
             </div>
-            <div style={{ 'marginTop': '3%' }}>
+            <TopicListStyle>
                 {repository.topics.map(topic => { return <Tag name={topic} /> })}
-            </div>
+            </TopicListStyle>
         </CardContainer>
     );
 }

@@ -1,5 +1,9 @@
 import styled from "styled-components";
 
+export const TopicListStyle = styled.div`
+    margin-top: 3%;
+`;
+
 export const CardContainer = styled.div`
     height: auto;
     padding: 1.5rem;
