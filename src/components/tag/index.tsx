@@ -1,6 +1,5 @@
 import './style.css';
 
-
 interface ITagProps {
     name: string;
 }

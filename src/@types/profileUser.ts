@@ -1,4 +1,3 @@
-
 export interface IProfileUserProps {
     id: string,
     name: string,

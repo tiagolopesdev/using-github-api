@@ -1,4 +1,3 @@
-
 export interface IRepositoryProps {
     id: string,
     name: string,
@@ -6,5 +5,6 @@ export interface IRepositoryProps {
     clone_url: string,
     svn_url: string,
     topics: [],
-    commits: number
+    commits: number,
+    language: string
 }

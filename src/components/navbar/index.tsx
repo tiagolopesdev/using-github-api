@@ -1,11 +1,15 @@
-import './style.css';
 import ListIcon from '../../assets/list.svg';
 import ProfileIcon from '../../assets/profile.svg';
 import SettingsIcon from '../../assets/settings.svg';
-import { ModalComponent } from '../modal';
-import Button from '@mui/material/Button';
+
+import { ModalComponent } from '../Modal';
 import { Link } from 'react-router-dom';
-import { ActionIcon } from '../actionIcons';
+import { ActionIcon } from '../ActionIcons';
+
+import Button from '@mui/material/Button';
+import { NavbarContainer } from './style';
+
+
 
 const styleLink = {
     alignSelf: 'center',
@@ -21,7 +25,7 @@ const styleButton = {
 export const NavBar = () => {
 
     return (
-        <div style={{
+        <NavbarContainer style={{
             position: 'fixed',
             display: 'grid',
             width: '100%',
@@ -38,18 +42,15 @@ export const NavBar = () => {
                 }}
             >
                 <ModalComponent>
-                    <ActionIcon
-                        src={SettingsIcon}
-                        descriptAlt='Icon settings user'
-                    />
+                    <ActionIcon src={String(SettingsIcon)} alt='Icon settings user'/>
                 </ModalComponent>
                 <Link to='/profile' style={styleLink}>
                     <Button
                         sx={styleButton}
                     >
                         <ActionIcon
-                            src={ProfileIcon}
-                            descriptAlt='Icon profile page'
+                            src={String(ProfileIcon)}
+                            alt='Icon profile page'
                         />
                     </Button>
                 </Link>
@@ -58,12 +59,12 @@ export const NavBar = () => {
                         sx={styleButton}
                     >
                         <ActionIcon
-                            src={ListIcon}
-                            descriptAlt='Icon list repositories'
+                            src={String(ListIcon)}
+                            alt='Icon list repositories'
                         />
                     </Button>
                 </Link>
             </div>
-        </div >
+        </NavbarContainer >
     );
 }

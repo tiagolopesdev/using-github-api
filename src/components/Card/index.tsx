@@ -1,17 +1,22 @@
-import { Button } from "../buttton";
-import { Tag } from "../tag";
-import { Body } from "./style";
+import { IRepositoryProps } from "../../@types/repositories";
+import { Button } from "../Button";
+import { Tag } from "../Tag";
+import { CardContainer, CommitsContainerRight, ContainerLeft, InfosContainer, TopicListStyle } from "./style";
 
-export const Card = ({ props }) => {
+interface ICardProps {
+    repository: IRepositoryProps
+}
+
+export const Card = ({repository}: ICardProps) => {
 
     const redirectToGithub = () => {
-        window.location.href = `${props.svn_url}`;
+        window.location.href = `${repository.svn_url}`;
     }
 
     return (
-        <Body key={props.id}>
-            <div style={{ 'display': 'flex' }}>
-                <div style={{ width: '80%' }}>
+        <CardContainer>
+            <InfosContainer >
+                <ContainerLeft>
                     <div style={{
                         'textAlign': 'start',
                         'width': '75%'
@@ -19,17 +24,17 @@ export const Card = ({ props }) => {
                         <h1 style={{
                             'fontSize': '25px',
                             'fontWeight': 'bold'
-                        }}>{props.name}</h1>
+                        }}>{repository.name}</h1>
                         <p
                             style={{
                                 'display': 'flex',
                                 'textAlign': 'justify'
-                            }}>{props.description}</p>
+                            }}>{repository.description}</p>
                     </div>
                     <p style={{
                         'textAlign': 'start',
                         'marginTop': '15px'
-                    }}>{props.language}</p>
+                    }}>{repository.language}</p>
                     <div style={{
                         'display': 'flex',
                         'marginTop': '5%'
@@ -41,29 +46,23 @@ export const Card = ({ props }) => {
                             'backgroundColor': 'rgb(18 57 92 / 16%)',
                             'padding': '0% 2%',
                             'borderRadius': '5px'
-                        }}>{props.clone_url}</p>
+                        }}>{repository.clone_url}</p>
                     </div>
-                </div>
-                <div style={{
-                    'alignItems': 'center',
-                    'display': 'grid'
-                }}>
+                </ContainerLeft>
+                <CommitsContainerRight >
                     <div>
                         <p>Commits</p>
                         <h3 style={{
                             'fontWeight': 'bold',
                             'fontSize': 'xx-large'
-                        }}>{props.commits}</h3>
+                        }}>{repository.commits}</h3>
                     </div>
-                    <Button
-                        displaytext={'Ver repositórios'}
-                        onClick={() => redirectToGithub()}
-                    />
-                </div>
-            </div>
-            <div style={{ 'marginTop': '3%' }}>
-                {props.topics.map(topic => { return <Tag name={topic} /> })}
-            </div>
-        </Body>
+                    <Button onClick={() => redirectToGithub()}>Ver repositórios</Button>
+                </CommitsContainerRight>
+            </InfosContainer>
+            <TopicListStyle>
+                {repository.topics.map(topic => { return <Tag name={topic} /> })}
+            </TopicListStyle>
+        </CardContainer>
     );
 }

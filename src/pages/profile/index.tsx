@@ -1,10 +1,10 @@
 import { useContext, useEffect } from "react";
-import { NavBar } from "../../components/navbar";
+import { NavBar } from "../../components/Navbar";
 import { UserProfileContext } from "../../context/user";
 
 export const Profile = () => {
 
-    const { user, isStorage, getStorageProfileUser, getProfileUserStored } = useContext(UserProfileContext);
+    const { user } = useContext(UserProfileContext);
 
     // useEffect(() => {
 
