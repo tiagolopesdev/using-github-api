@@ -1,4 +1,4 @@
-import { useContext, useEffect } from "react";
+import { useContext } from "react";
 import { NavBar } from "../../components/Navbar";
 import { UserProfileContext } from "../../context/user";
 

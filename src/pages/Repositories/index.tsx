@@ -1,4 +1,4 @@
-import { useContext, useState, useEffect, useCallback } from 'react';
+import { useContext, useState, useEffect } from 'react';
 import { getCommitsByRepository, getRepositoriesByUser } from '../../service';
 import { NavBar } from '../../components/Navbar';
 import { UserProfileContext } from '../../context/user';
