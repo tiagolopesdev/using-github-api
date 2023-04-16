@@ -1,11 +1,39 @@
 import { Button, Card, CardActions, CardContent } from "@mui/material";
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import { NavBar } from "../../components/Navbar";
 import { UserProfileContext } from "../../context/user";
+import { getProfileUser } from "../../service";
+
+interface IPropertysProfile {
+    bio: string,
+    blog: string,
+    name: string,
+    following: string,
+    followers: string,
+    location: string,
+    html_url: string,
+    avatar_url: string,
+}
 
 export const Profile = () => {
 
     const { user } = useContext(UserProfileContext);
+    const [profile, setProfile] = useState<IPropertysProfile>();
+
+    const getInformationsProfile = async (login: string) => {
+        const response: IPropertysProfile = await getProfileUser(login);
+        setProfile(response)
+    }
+
+    const redirectToGithub = () => {
+        window.location.href = `${profile?.html_url}`;
+    }
+
+    useEffect(() => {
+
+        if(user.login) getInformationsProfile(user.login)
+
+    }, [user.login])
 
     return (
         <>
@@ -18,16 +46,16 @@ export const Profile = () => {
                 }}
             >
                 <Card style={{ padding: '2rem', borderRadius: '15px', backgroundColor: '#E7FBFF' }}>
-                    <CardContent>
+                    <CardContent style={{ minWidth: '40rem' }}>
                         <div style={{ display: "flex" }} >
-                            <div>
-                                <img src='https://avatars.githubusercontent.com/u/58925056?v=4' style={{ borderRadius: '50%', width: '15rem' }} />
+                            <div style={{ minWidth: '5rem', width: '10rem' }}>
+                                <img src={profile?.avatar_url} style={{ borderRadius: '50%', width: '15rem' }} />
                                 <div style={{ display: 'grid', justifyItems: "center" }} >
                                     <p style={{
-                                        fontSize: '18pt',
+                                        fontSize: '16pt',
                                         fontWeight: 'bold'
-                                    }}>Biografia</p>
-                                    <p>Localização</p>
+                                    }}>{profile?.bio}</p>
+                                    <p>{profile?.location}</p>
                                 </div>
                             </div>
                             <div
@@ -37,14 +65,14 @@ export const Profile = () => {
                                     minWidth: '50%'
                                 }}
                             >
-                                <h1>Tiago Lopes</h1>
-                                <p>saxtiago14@gmail.com</p>
+                                <h1>{profile?.name}</h1>
+                                <p>{profile?.blog}</p>
                                 <div style={{ display: "flex", justifyContent: "end", marginTop: '15%' }} >
                                     <div style={{
                                         display: 'grid',
                                         justifyItems: 'center'
                                     }}>
-                                        <h4 style={{ marginBottom: '0px' }}>000</h4>
+                                        <h4 style={{ marginBottom: '0px' }}>{profile?.followers}</h4>
                                         <p>Seguidores</p>
                                     </div>
                                     <div style={{
@@ -52,7 +80,7 @@ export const Profile = () => {
                                         display: 'grid',
                                         justifyItems: 'center'
                                     }} >
-                                        <h4 style={{ marginBottom: '0px' }}>000</h4>
+                                        <h4 style={{ marginBottom: '0px' }}>{profile?.following}</h4>
                                         <p>Seguindo</p>
                                     </div>
                                 </div>
@@ -71,6 +99,7 @@ export const Profile = () => {
                                 borderRadius: '20px',
                                 padding: '5px 50px'
                             }}
+                            onClick={() => { redirectToGithub() }}
                         >Perfil do github</Button>
                     </CardActions>
                 </Card>
