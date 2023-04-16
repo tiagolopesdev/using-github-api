@@ -1,4 +1,4 @@
-import { Button, Card, CardActions, CardContent, CardMedia, Typography } from "@mui/material";
+import { Button, Card, CardActions, CardContent } from "@mui/material";
 import { useContext } from "react";
 import { NavBar } from "../../components/Navbar";
 import { UserProfileContext } from "../../context/user";
@@ -14,10 +14,10 @@ export const Profile = () => {
                 style={{
                     marginTop: '200px',
                     display: 'flex',
-                    justifyContent: 'center'
+                    justifyContent: 'center'                    
                 }}
             >
-                <Card sx={{ maxWidth: '100%', padding: '2rem' }}>
+                <Card style={{ padding: '2rem', borderRadius: '15px', backgroundColor: '#E7FBFF' }}>
                     <CardContent>
                         <div style={{ display: "flex" }} >
                             <div>
@@ -67,14 +67,7 @@ export const Profile = () => {
                     >
                         <Button
                             variant="contained"
-                            style={{                                
-                                borderRadius: '20px',
-                                padding: '5px 50px'
-                            }}
-                        >Ver repositórios</Button>
-                        <Button
-                            variant="outlined"
-                            style={{                                
+                            style={{
                                 borderRadius: '20px',
                                 padding: '5px 50px'
                             }}
