@@ -7,6 +7,10 @@ import { IRepositoryProps } from '../../@types/repositories';
 
 import './App.css';
 import { IProfileUserProps } from '../../@types/profileUser';
+import { Alert, Stack } from '@mui/material';
+import { ActionIcon } from '../../components/ActionIcons';
+
+import IndicationActionIcon from '../../assets/indication_action.svg';
 
 export const Repositories = () => {
 
@@ -37,26 +41,54 @@ export const Repositories = () => {
     getAllRepositories(user);
   }, [user])
 
+  const renderRepositories = (repositoriesProps: IRepositoryProps[]) => {
+    return repositoriesProps.map(repository => {
+      return (
+        <Card
+          key={repository.id}
+          repository={repository}
+        />
+      )
+    })
+  }
+
+  console.log('Repos ', repositories)
+
+  // const displayIcon = () => {
+  //   return (
+  //     <ActionIcon src={String(IndicationActionIcon)} alt='Icon settings user' style={{ width: '60px', margin: '0px'}} />
+  //   )
+  // }
+
   return (
-    <div className="App">
+    <div className="App">      
       <div>
         <NavBar />
       </div>
-
-      <div style={{
-        marginTop: '10%',
-        display: 'grid',
-        justifyContent: 'center'
-      }}>
-        {repositories.map(repository => {
-            return (
-              <Card
-                key={repository.id}
-                repository={repository}
-              />
-            )
-          })}
-      </div>
+      {repositories.length > 0 ?
+        <div style={{
+          marginTop: '10%',
+          display: 'grid',
+          justifyContent: 'center'
+        }}>
+          {renderRepositories(repositories)}
+        </div> :
+        <Stack style={{
+          width: '100%',
+          marginTop: '20%',
+          display: 'flex',
+          alignItems: 'center',
+        }} spacing={2}>
+          <Alert
+            severity="warning"
+            style={{
+              fontWeight: 'bold',
+              boxShadow: '0px 4px 10px 2px rgba(0, 0, 0, 0.1)',
+              borderRadius: '15px'
+            }}
+          >Insira seu nickname para obter repositórios do perfil</Alert>
+        </Stack>
+      }
     </div >
   );
 }
