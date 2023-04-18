@@ -8,9 +8,7 @@ import { IRepositoryProps } from '../../@types/repositories';
 import './App.css';
 import { IProfileUserProps } from '../../@types/profileUser';
 import { Alert, Stack } from '@mui/material';
-import { ActionIcon } from '../../components/ActionIcons';
 
-import IndicationActionIcon from '../../assets/indication_action.svg';
 
 export const Repositories = () => {
 
@@ -34,7 +32,6 @@ export const Repositories = () => {
     } else if (actualUser.login === '' && repositories) {
       setRepositories([]);
     }
-
   }
 
   useEffect(() => {
@@ -51,14 +48,6 @@ export const Repositories = () => {
       )
     })
   }
-
-  console.log('Repos ', repositories)
-
-  // const displayIcon = () => {
-  //   return (
-  //     <ActionIcon src={String(IndicationActionIcon)} alt='Icon settings user' style={{ width: '60px', margin: '0px'}} />
-  //   )
-  // }
 
   return (
     <div className="App">      
