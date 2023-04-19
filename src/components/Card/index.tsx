@@ -1,5 +1,5 @@
 import { IRepositoryProps } from "../../@types/repositories";
-import { Button } from "../button";
+import { Button } from "../Button";
 import { Tag } from "../tag";
 import { CardContainer, CommitsContainerRight, ContainerLeft, InfosContainer, TopicListStyle } from "./style";
 
