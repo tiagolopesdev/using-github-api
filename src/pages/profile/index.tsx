@@ -2,7 +2,7 @@
 import { Alert, Button, Card, CardActions, CardContent } from "@mui/material";
 import { Stack } from "@mui/system";
 import { useContext, useEffect, useState } from "react";
-import { NavBar } from "../../components/Navbar";
+import { NavBar } from "../../components/navbar";
 import { UserProfileContext } from "../../context/user";
 import { getProfileUser } from "../../service";
 
