@@ -1,6 +1,6 @@
 import { IRepositoryProps } from "../../@types/repositories";
-import { Button } from "../Button";
-import { Tag } from "../Tag";
+import { Button } from "../button";
+import { Tag } from "../tag";
 import { CardContainer, CommitsContainerRight, ContainerLeft, InfosContainer, TopicListStyle } from "./style";
 
 interface ICardProps {
