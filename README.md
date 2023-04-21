@@ -1,70 +1,77 @@
-# Getting Started with Create React App
+# Consumo da API do github
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+### Objetivo do projeto
 
-## Available Scripts
+> O objetivo foi aprimorar meus conhecimentos sobre React. Quando iniciei o desenvolvimento, ainda estava explorando esse novo mundo, do frontend. Além disso, pude aplicar conceitos importantes, como contexto e uso das melhores práticas de desenvolvimento
+> 
 
-In the project directory, you can run:
+### Funcionalidades
 
-### `npm start`
+1. Listar todos os repositórios do github, com base no nome de usuário.
+2. Apresentar as informações de perfil, como bio, localização, quantidade de seguidores e pessoas que segue e e-mail.
+3. Navegação entre páginas
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### Screenshots
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+1. Listagem dos repositórios
+    
+    ![Untitled1](https://user-images.githubusercontent.com/58925056/233652903-9fa77573-6312-4f50-8052-c5c85b6cd0f0.png)
+    
+2. Exibição dos dados do perfil
 
-### `npm test`
+    ![Untitled2](https://user-images.githubusercontent.com/58925056/233653130-5255c8f5-25b1-4107-86a2-7da086960cb4.png)
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Instalação
 
-### `npm run build`
+Instale a aplicação com `npm`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+```bash
+npm install
+```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+```bash
+npm start
+```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Rotas utilizadas da API do Github
 
-### `npm run eject`
+1. Obter informações do perfil
+    
+    ```bash
+    https://api.github.com/users/{NAME_USER}
+    ```
+    
+    | Parâmetro | Tipo | Descrição | Método Http |
+    | --- | --- | --- | --- |
+    | name_user | string | Obrigatório. Chave para obter das informações do perfil | GET |
+2. Obter repositórios
+    
+    ```bash
+    https://api.github.com/users/{NAME_USER}/repos
+    ```
+    
+    | Parâmetro | Tipo | Descrição | Método Http |
+    | --- | --- | --- | --- |
+    | name_user | string | Obrigatório. Chave para obter os repositórios | GET |
+3. Obter commits
+    
+    ```bash
+    https://api.github.com/repos/{NAME_USER}/{NAME_REPOSITORY}/commits
+    ```
+    
+    | Parâmetro | Tipo | Descrição | Método Http |
+    | --- | --- | --- | --- |
+    | name_user | string | Obrigatório. Chave para identificar o usuário | GET |
+    | NAME_REPOSITORY | string | Obrigatório. Chave para obter os commits específicos do repositório | GET |
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+<br>
+<br>
+<div align="center">
+    <h2>Autor</h2>
+    <img src="https://user-images.githubusercontent.com/58925056/157934762-1b63b01a-92c4-4a5a-8cf3-1787c894c565.png" width=175px>
+    <h3>📲Meus contatos</h3>
+    <a href="https://instagram.com/tiago_lopes_14" target="_blank"><img src="https://img.shields.io/badge/-Instagram-%23E4405F?style=for-the-badge&logo=instagram&logoColor=white" target="_blank"></a> 
+    <a href="mailto:saxtiago@gmailcom"><img src="https://img.shields.io/badge/-Gmail-%23333?style=for-the-badge&logo=gmail&logoColor=white" target="_blank"></a>
+    <a href="https://www.linkedin.com/in/tiagolopesdeveloper/" target="_blank"><img src="https://img.shields.io/badge/-LinkedIn-%230077B5?style=for-the-badge&logo=linkedin&logoColor=white" target="_blank"></a>
+    <a href="https://t.me/tiagoLopesDev" target="_blank"><img src="https://img.shields.io/badge/Telegram-2CA5E0?style=for-the-badge&logo=telegram&logoColor=white" target="_blank"></a>
+</div>
