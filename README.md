@@ -43,7 +43,7 @@ npm start
     
     | Parâmetro | Tipo | Descrição | Método Http |
     | --- | --- | --- | --- |
-    | name_user | string | Obrigatório. Chave para obter das informações do perfil | GET |
+    | `name_user` | `string` | **Obrigatório**. Chave para obter das informações do perfil | `GET` |
 2. Obter repositórios
     
     ```bash
@@ -52,7 +52,7 @@ npm start
     
     | Parâmetro | Tipo | Descrição | Método Http |
     | --- | --- | --- | --- |
-    | name_user | string | Obrigatório. Chave para obter os repositórios | GET |
+    | `name_user` | `string` | **Obrigatório**. Chave para obter os repositórios | `GET` |
 3. Obter commits
     
     ```bash
@@ -61,8 +61,8 @@ npm start
     
     | Parâmetro | Tipo | Descrição | Método Http |
     | --- | --- | --- | --- |
-    | name_user | string | Obrigatório. Chave para identificar o usuário | GET |
-    | NAME_REPOSITORY | string | Obrigatório. Chave para obter os commits específicos do repositório | GET |
+    | `name_user` | `string` | **Obrigatório**. Chave para identificar o usuário | `GET` |
+    | `name_repository` | `string` | **Obrigatório**. Chave para obter os commits específicos do repositório | `GET` |
 
 <br>
 <br>
