@@ -1,6 +1,6 @@
 import { Routes, Route} from "react-router-dom"
 import { Repositories } from "./pages/Repositories"
-import { Profile } from "./pages/Profile"
+import { Profile } from "./pages/profile"
 
 export function Router(){
   return (
