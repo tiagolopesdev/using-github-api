@@ -32,9 +32,7 @@ export const Profile = () => {
     }
 
     useEffect(() => {
-
         if (user.login) getInformationsProfile(user.login)
-
     }, [user.login])
 
     const cardDisplayProfile = () => {
